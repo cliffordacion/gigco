@@ -19,8 +19,8 @@ return new class extends Migration
                 $table->id();
                 $table->string('title');
                 $table->string('url');
-                $table->string('artist_name');
-                $table->string('duration');
+                $table->string('artist_name')->nullable();
+                $table->string('duration')->nullable();
                 $table->softDeletes();
                 $table->timestamps();
             }

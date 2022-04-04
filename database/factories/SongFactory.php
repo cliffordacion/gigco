@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Song;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SongFactory extends Factory
 {
+    protected $model = Song::class;
     /**
      * Define the model's default state.
      *

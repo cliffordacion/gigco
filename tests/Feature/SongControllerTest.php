@@ -17,13 +17,17 @@ class SongControllerTest extends TestCase
 
     public function test_songs_list_can_be_accessed()
     {
-        $song = Song::factory()->make();
+        $song = Song::factory()->create();
 
         $response = $this->get('/api/songs');
         $response
             ->assertStatus(200)
             ->assertJson([
-                'title' => $song->title,
+                'data' => [
+                    [
+                        'title' => $song->title,
+                    ]
+                ]
             ]);
     }
 
@@ -51,7 +55,7 @@ class SongControllerTest extends TestCase
 
     public function test_songs_can_be_updated()
     {
-        $song = Song::factory()->make();
+        $song = Song::factory()->create();
 
         $payload = [
             'title' => $this->faker->sentence()
@@ -72,7 +76,7 @@ class SongControllerTest extends TestCase
 
     public function test_songs_can_be_deleted()
     {
-        $song = Song::factory()->make();
+        $song = Song::factory()->create();
 
         $response = $this->delete('/api/songs/' . $song->id);
         $response
@@ -81,9 +85,7 @@ class SongControllerTest extends TestCase
             ]);
 
         $this->assertDatabaseMissing('songs', [
-            'title' => $song->title,
-            'url' => $song->url,
-            'artist_name' => $song->artist_name
+            'id' => $song->id
         ]);
     }
 }
