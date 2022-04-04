@@ -14,6 +14,12 @@ class SongController extends Controller
         return response()->json($songs);
     }
 
+    public function show($id)
+    {
+        $song = Song::findOrFail($id);
+        return response()->json($song->toArray());
+    }
+
     public function store(Request $request)
     {
         $request->validate([
